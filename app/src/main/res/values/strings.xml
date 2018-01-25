@@ -5,7 +5,7 @@
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Prijavi se</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -20,4 +20,26 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_manhole_details">ManholeDetailsActivity</string>
+
+
+    <string name="token">Token</string>
+    <string name="phone">Telephone nr.</string>
+    <string name="title_activity_device_setup">Device Setup</string>
+    <string name="next">NEXT</string>
+    <string name="title_activity_token">TokenActivity</string>
+    <string name="title_activity_request_new_token">New Token</string>
+    <string name="request_token_description">To request a new token, click on the button below and follow the instructions. If you need more detailed help, feel free to call our support</string>
+    <string name="send_request">Send request</string>
+    <string name="welcome">Welcome!</string>
+    <string name="to_activate">To activate, plese enter the token. To obtain a token, request a new one and follow the procedure.</string>
+    <string name="activate">Activate</string>
+    <string name="request_token">REQUEST A TOKEN</string>
+    <string name="share_device">Share a Device</string>
+    <string name="share_info_desc">Type in a phone number of a person that you want to follow this device</string>
+    <string name="cancel">Cancel</string>
+    <string name="share">Share</string>
+    <string name="title_activity_mobile_number">MobileNumberActivity</string>
+    <string name="title_activity_maps">Map</string>
+
 </resources>

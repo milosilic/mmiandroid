@@ -61,8 +61,7 @@ public class ManholeList extends AppCompatActivity {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(ManholeList.this, MainActivity.class);
-
+                    Intent intent = new Intent(ManholeList.this, ManholeDetailsActivity.class);
                     Logger.d( mCatNamesRecyclerViewAdapter.getItem(position));
                     intent.putExtra("id_device", (String) ((Manhole)mCatNamesRecyclerViewAdapter.getItem(position)).getId().toString());
                     startActivity(intent);

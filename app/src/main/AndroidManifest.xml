@@ -47,7 +47,7 @@
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ManholeList" />
+        <activity android:name=".ManholeList" android:label="@string/title_activity_manhole_list"/>
         <activity
             android:name=".ManholeDetailsActivity"
             android:label="@string/title_activity_manhole_details"

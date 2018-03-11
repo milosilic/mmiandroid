@@ -30,8 +30,8 @@ public class ManholeListAdapter extends BaseAdapter {
     public ManholeListAdapter(Context context){
         this.mContext = context;
         this.manholeList = new ArrayList<Manhole>();
-        for ( int i=1; i<10; i++ ){
-            Manhole manhole = new Manhole(i, 44.4, 20.5, "teto "+ i, new Long(234022433), "Stevana Markovica 8");
+        for ( int i=1; i<15; i++ ){
+            Manhole manhole = new Manhole(i, 44.4, 20.5, "teto "+ i, new Long(234022433 +  i ), "Stevana Markovica 8");
             this.manholeList.add(manhole);
         }
     }

@@ -119,13 +119,15 @@
 
     <Button
         android:id="@+id/prekini"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="8dp"
-        android:text="NEMA USLOVA"
+        android:background="@color/colorAllRed"
+        android:text="OTKAZI"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,9 +137,12 @@
         android:id="@+id/proceedButton"
         android:layout_width="176dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
-        android:text="UGRADNJA"
+        android:background="@color/colorProceed"
+        android:text="NASTAVI"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventMap" />
 

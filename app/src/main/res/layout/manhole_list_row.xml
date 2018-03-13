@@ -28,8 +28,7 @@
                 <ImageView
                     android:id="@+id/trackDifficultyCircle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:srcCompat="@drawable/cast_album_art_placeholder" />
+                    android:layout_height="match_parent"/>
 
                 <TextView
                     android:id="@+id/text_track_name"
@@ -58,14 +57,13 @@
                     android:id="@+id/attentionImageDeviceList"
                     android:layout_marginTop="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    app:srcCompat="@drawable/cast_abc_scrubber_control_to_pressed_mtrl_000" />
+                    android:layout_height="42dp"/>
 
                 <TextView
                     android:id="@+id/textLastSeenAgo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="8 mins ago"
+                    android:text="13.03.2018."
                     android:lines="1"/>
 
             </LinearLayout>

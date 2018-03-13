@@ -16,5 +16,5 @@
     <color name="black_overlay">#66000000</color>
     <color name="colorGray">#eff2f7</color>
     <color name="colorPrimaryText">#355F73</color>
-
+    <color name="colorProceed">#00cdbe</color>
 </resources>

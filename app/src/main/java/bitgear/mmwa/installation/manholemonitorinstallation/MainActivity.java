@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,20 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import java.util.List;
+
+import bitgear.mmwa.installation.manholemonitorinstallation.model.Movie;
+import bitgear.mmwa.installation.manholemonitorinstallation.model.MoviesResponse;
+import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiClient;
+import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private final static String API_KEY = "7e8f60e325cd06e164799af1e317d7a7";
 
     public static TextView tvresult;
     private Button btn;
@@ -64,6 +78,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 */
+
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY);
+        call.enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                int statusCode = response.code();
+                List<Movie> movies = response.body().getResults();
+
+            }
+
+            @Override
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e(TAG, t.toString());
+            }
+        });
+
 
 
     }

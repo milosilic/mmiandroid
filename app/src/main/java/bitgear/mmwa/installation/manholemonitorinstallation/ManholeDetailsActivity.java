@@ -79,7 +79,7 @@ public class ManholeDetailsActivity extends AppCompatActivity implements OnMapRe
             }
             TextView expiresOnTextView = (TextView) findViewById(R.id.expiresOn);
             if ( expiresOnTextView != null){
-                expiresOnTextView.setText("Expires on: " + device.getLast_update().toString());
+//                expiresOnTextView.setText("Expires on: " + device.getLast_update().toString());
             }
             TextView deviceColorImageView = (TextView) findViewById(R.id.deviceColorImageView);
             if ( deviceColorImageView != null){

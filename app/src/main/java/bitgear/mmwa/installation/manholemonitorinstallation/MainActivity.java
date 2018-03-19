@@ -79,25 +79,6 @@ public class MainActivity extends AppCompatActivity {
         });
 */
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        Call<MoviesResponse> call = apiService.getTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<MoviesResponse>() {
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                int statusCode = response.code();
-                List<Movie> movies = response.body().getResults();
-
-            }
-
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-                // Log error here since request failed
-                Log.e(TAG, t.toString());
-            }
-        });
-
-
 
     }
 

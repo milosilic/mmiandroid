@@ -5,17 +5,26 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.orhanobut.logger.Logger;
 
+import java.util.List;
+
 import bitgear.mmwa.installation.manholemonitorinstallation.adapter.ManholeListAdapter;
 import bitgear.mmwa.installation.manholemonitorinstallation.domain.Manhole;
+import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiClient;
+import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ManholeList extends AppCompatActivity {
 
+    private static final String TAG = ManholeList.class.getSimpleName();
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ListView mRecyclerView;
     private ManholeListAdapter mCatNamesRecyclerViewAdapter;
@@ -26,6 +35,38 @@ public class ManholeList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manhole_list);
         deviceSwipeList();
+        this.getManholes();
+    }
+
+    private void getManholes() {
+
+        Log.d(TAG, "Krećem sa Retrofit");
+        ApiInterface apiService =
+                ApiClient.getClient().create(ApiInterface.class);
+        Call<List<Manhole>> call = apiService.getTopRatedMovies("Bearer DeXXeb3FePOe9dXRifZ5TupJeEjnZpHQsw0HUoF7ma7W7Z9uSpsjFW5PHbZP");
+        call.enqueue(new Callback<List<Manhole>>() {
+            @Override
+            public void onResponse(Call<List<Manhole>> call, Response<List<Manhole>> response) {
+                Log.d(TAG, "Stigao response");
+                int statusCode = response.code();
+
+                List<Manhole> listaOkana = response.body();
+                mCatNamesRecyclerViewAdapter.setManholeList(listaOkana);
+                Log.d(TAG, listaOkana.toString());
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<List<Manhole>> call, Throwable t) {
+                // Log error here since request failed
+                Log.d(TAG, "onFailure");
+                Log.e(TAG, t.toString());
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+
+
     }
 
 
@@ -43,10 +84,9 @@ public class ManholeList extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        setupAdapter();
-                        mSwipeRefreshLayout.setRefreshing(false);
+                        getManholes();
                     }
-                }, 2500);
+                }, 25);
             }
         });    }
 

@@ -30,10 +30,6 @@ public class ManholeListAdapter extends BaseAdapter {
     public ManholeListAdapter(Context context){
         this.mContext = context;
         this.manholeList = new ArrayList<Manhole>();
-        for ( int i=1; i<15; i++ ){
-            Manhole manhole = new Manhole(i, 44.4, 20.5, "teto "+ i, new Long(234022433 +  i ), "Stevana Markovica 8");
-            this.manholeList.add(manhole);
-        }
     }
 
     @Override
@@ -92,10 +88,19 @@ public class ManholeListAdapter extends BaseAdapter {
 
         //sets the text for item name and item description from the current item object
         textViewItemName.setText(currentDevice.getName());
-        textViewItemDescription.setText(currentDevice.getLast_update().toString() +  " mins ago");
+//        textViewItemDescription.setText(currentDevice.getLast_update().toString() +  " mins ago");
         textTrackName.setText(currentDevice.getAddress());
 
         // returns the view for the current row
         return view;
+    }
+
+    public List<Manhole> getManholeList() {
+        return manholeList;
+    }
+
+    public void setManholeList(List<Manhole> manholeList) {
+        this.manholeList = manholeList;
+        notifyDataSetChanged();
     }
 }

@@ -1,6 +1,9 @@
 package bitgear.mmwa.installation.manholemonitorinstallation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -41,8 +44,9 @@ public class ManholeList extends AppCompatActivity {
     private void getManholes() {
 
         Log.d(TAG, "Krećem sa Retrofit");
+        Log.d(TAG, Boolean.toString(ManholeList.isOnline(this)));
         ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+                ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
         Call<List<Manhole>> call = apiService.getTopRatedMovies("Bearer DeXXeb3FePOe9dXRifZ5TupJeEjnZpHQsw0HUoF7ma7W7Z9uSpsjFW5PHbZP");
         call.enqueue(new Callback<List<Manhole>>() {
             @Override
@@ -108,6 +112,13 @@ public class ManholeList extends AppCompatActivity {
                 }
             });
         }
+    }
+
+
+    public static boolean isOnline(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
+        return (netInfo != null && netInfo.isConnected());
     }
 
 

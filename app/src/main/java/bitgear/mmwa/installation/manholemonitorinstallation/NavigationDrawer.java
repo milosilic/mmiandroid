@@ -21,13 +21,16 @@ public class NavigationDrawer extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_navigation_drawer);
         String username = getIntent().getStringExtra("username");
         if (username!= null)
         {
-            TextView usernameNavTitle = (TextView)findViewById(R.id.usernameNavTitle);
-            usernameNavTitle.setText(username);
+//            https://stackoverflow.com/a/35684620/587228
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            View hView =  navigationView.getHeaderView(0);
+            TextView nav_user = (TextView)hView.findViewById(R.id.usernameNavTitle);
+            nav_user.setText(username);
         }
-        setContentView(R.layout.activity_navigation_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

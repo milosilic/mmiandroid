@@ -1,11 +1,15 @@
 package bitgear.mmwa.installation.manholemonitorinstallation;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +23,7 @@ import java.util.List;
 
 import bitgear.mmwa.installation.manholemonitorinstallation.adapter.ManholeListAdapter;
 import bitgear.mmwa.installation.manholemonitorinstallation.domain.Manhole;
+import bitgear.mmwa.installation.manholemonitorinstallation.network.NoConnectivityException;
 import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiClient;
 import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiInterface;
 import retrofit2.Call;
@@ -65,6 +70,10 @@ public class ManholeList extends AppCompatActivity {
                 // Log error here since request failed
                 Log.d(TAG, "onFailure");
                 Log.e(TAG, t.toString());
+                if ( t instanceof NoConnectivityException){
+                    Log.e(TAG, "E sam ti reko");
+                    showDialog();
+                }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -120,6 +129,24 @@ public class ManholeList extends AppCompatActivity {
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
         return (netInfo != null && netInfo.isConnected());
     }
+
+    private void showDialog()
+    {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle("Greska")
+                .setMessage("Proverite internet konekciju")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();    }
 
 
 }

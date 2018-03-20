@@ -5,4 +5,6 @@ package bitgear.mmwa.installation.manholemonitorinstallation.model;
  */
 
 public class LoginResponse {
+
+    private String api_token;
 }

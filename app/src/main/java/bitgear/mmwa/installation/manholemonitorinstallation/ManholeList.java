@@ -24,6 +24,7 @@ import java.util.List;
 import bitgear.mmwa.installation.manholemonitorinstallation.adapter.ManholeListAdapter;
 import bitgear.mmwa.installation.manholemonitorinstallation.domain.Manhole;
 import bitgear.mmwa.installation.manholemonitorinstallation.network.NoConnectivityException;
+import bitgear.mmwa.installation.manholemonitorinstallation.model.LoginResponse;
 import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiClient;
 import bitgear.mmwa.installation.manholemonitorinstallation.rest.ApiInterface;
 import retrofit2.Call;
@@ -44,6 +45,31 @@ public class ManholeList extends AppCompatActivity {
         setContentView(R.layout.activity_manhole_list);
         deviceSwipeList();
         this.getManholes();
+        this.getLogin();
+    }
+
+    private void getLogin() {
+        ApiInterface apiService =
+                ApiClient.getClient(getApplicationContext()).create(ApiInterface.class);
+        Call<LoginResponse> call = apiService.login("euler", "password");
+        call.enqueue(new Callback<LoginResponse>(){
+
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                Log.d(TAG, "Stigao login");
+                String idemo = response.body().toString();
+                Log.d(TAG, idemo);
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                Log.d(TAG, "onFailureLogin");
+                Log.e(TAG, t.toString());
+
+            }
+        });
+
     }
 
     private void getManholes() {
